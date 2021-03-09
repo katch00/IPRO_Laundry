@@ -6,7 +6,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
     <servlet>
         <servlet-name>machines</servlet-name>
-        <servlet-class>myapp.DemoServlet</servlet-class>
+        <servlet-class>myapp.Machines</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>machines</servlet-name>
