@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Testing Page</title>
+  </head>
+  <body>
+    <div id="content">
+      <a href="index.html">Go back to home</a>
+      <p>Make a machine:</p>
+      <form action="/machines" method="POST">
+        <label>Machine Name</label><br>
+        <input type="text" id="machineForm" name="machine-name-input" placeholder="Machine name here ..."><br>
+        <label>Select Location</label><br>
+        <select id = "locationList" name="machine-location-input">
+            <option value = "Guns">Gunsaulus Hall</option>
+            <option value = "MSV">MSV</option>
+            <option value = "SSV">SSV</option>
+            <option value = "Carmen">Carmen</option>
+        </select><br>
+        <label>Machine Type</label><br>
+        <input type="radio" id="wash" name="machine-type-input" value="washer">
+        <label for="male">Washer</label><br>
+        <input type="radio" id="dry" name="machine-type-input" value="dryer">
+        <label for="female">Dryer</label><br>
+        <label>Machine Status</label><br>
+        <select id = "machineStatus" name="machine-status-input">
+            <option value = "offline">Offline</option>
+            <option value = "idle">Online - Idle</option>
+            <option value = "busy">Online - Busy</option>
+            <option value = "unknown">Unknown</option>
+        </select><br>
+        <input type="submit" value="Submit"/>
+      </form>
+      <ul id="machine-container"></ul>
+    </div>
+  </body>
+</html>
