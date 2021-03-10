@@ -1,9 +1,12 @@
 function ggetMachines() {
     let location = document.getElementById('locationList').value;
     fetch(`/machines?locationList=${location}`).then(response => response.json()).then((messages) => {
-    const cmmtListEl = document.getElementById('machine-container');
+    var listEl = document.getElementById('machine-container');
+    while( listEl.firstChild ){
+        listEl.removeChild( listEl.firstChild );
+    }
     messages.forEach((message) => {
-        cmmtListEl.appendChild(createMachineElement(message));
+        listEl.appendChild(createMachineElement(message));
     })
   });
 
