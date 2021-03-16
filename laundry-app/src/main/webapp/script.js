@@ -1,5 +1,7 @@
 function ggetMachines() {
     let location = document.getElementById('locationList').value;
+    var pageTitle = document.getElementById('location-title');
+    pageTitle.innerText = location;
     fetch(`/machines?locationList=${location}`).then(response => response.json()).then((messages) => {
     var gridEl = document.getElementById('machine-container');
     while( gridEl.firstChild ){
@@ -25,8 +27,6 @@ function ggetMachines() {
         {
             row3.appendChild(colEl);
         }
-        
-       // listEl.appendChild(createMachineCard(message));
     })
     gridEl.appendChild(row1);
     gridEl.appendChild(row2);
@@ -34,12 +34,7 @@ function ggetMachines() {
   });
 
 }
-/*
-<div class="row">
-  <div class="col-sm-4">.col-sm-4</div>
-  <div class="col-sm-4">.col-sm-4</div>
-  <div class="col-sm-4">.col-sm-4</div>
-</div> */
+
 
 function createMachineElement(machine) {
   const machineElement = document.createElement('li');
@@ -56,20 +51,30 @@ function createMachineElement(machine) {
 function createMachineCard(machine) {
     const machineCard = document.createElement('div');
     machineCard.className = 'card';
-    
+
 
     const cardImg = document.createElement('img');
     cardImg.src = 'https://static.thenounproject.com/png/1754024-200.png';
+    cardImg.className = 'center-block';
 
     const cardBody = document.createElement('div');
     cardBody.className = 'card-body';
 
+    const cardTitle = document.createElement('h5');
+    cardTitle.className = 'card-title';
+    cardTitle.innerText = machine.name;
+    const cardSubTitle = document.createElement('h6');
+    cardSubTitle.className = 'card-subtitle text-muted';
+    cardSubTitle.innerText = machine.location;
+    
     const cardText = document.createElement('p');
     cardText.className = 'card-text';
     cardText.innerText = machine.testing;
 
     machineCard.appendChild(cardImg);
     machineCard.appendChild(cardBody);
+    machineCard.appendChild(cardTitle);
+    machineCard.appendChild(cardSubTitle);
     machineCard.appendChild(cardText);
     
     return machineCard;
