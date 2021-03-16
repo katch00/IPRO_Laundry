@@ -1,16 +1,45 @@
 function ggetMachines() {
     let location = document.getElementById('locationList').value;
     fetch(`/machines?locationList=${location}`).then(response => response.json()).then((messages) => {
-    var listEl = document.getElementById('machine-container');
-    while( listEl.firstChild ){
-        listEl.removeChild( listEl.firstChild );
+    var gridEl = document.getElementById('machine-container');
+    while( gridEl.firstChild ){
+        gridEl.removeChild( gridEl.firstChild );
     }
+    var count = 0;
+    var row1 = document.createElement('div'); row1.className = 'row';
+    var row2 = document.createElement('div'); row2.className = 'row';
+    var row3 = document.createElement('div'); row3.className = 'row';
     messages.forEach((message) => {
-        listEl.appendChild(createMachineElement(message));
+        count++;
+        const colEl = document.createElement('div');
+        colEl.className = 'col-sm-3';
+        colEl.appendChild(createMachineCard(message));
+        if(count <5)
+        {
+            row1.appendChild(colEl);            
+        }
+        if(count < 9){
+            row2.appendChild(colEl);
+        }
+        else
+        {
+            row3.appendChild(colEl);
+        }
+        
+       // listEl.appendChild(createMachineCard(message));
     })
+    gridEl.appendChild(row1);
+    gridEl.appendChild(row2);
+    gridEl.appendChild(row3);    
   });
 
 }
+/*
+<div class="row">
+  <div class="col-sm-4">.col-sm-4</div>
+  <div class="col-sm-4">.col-sm-4</div>
+  <div class="col-sm-4">.col-sm-4</div>
+</div> */
 
 function createMachineElement(machine) {
   const machineElement = document.createElement('li');
@@ -22,4 +51,26 @@ function createMachineElement(machine) {
   machineElement.appendChild(titleElement);
   
   return machineElement;
+}
+
+function createMachineCard(machine) {
+    const machineCard = document.createElement('div');
+    machineCard.className = 'card';
+    
+
+    const cardImg = document.createElement('img');
+    cardImg.src = 'https://static.thenounproject.com/png/1754024-200.png';
+
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    const cardText = document.createElement('p');
+    cardText.className = 'card-text';
+    cardText.innerText = machine.testing;
+
+    machineCard.appendChild(cardImg);
+    machineCard.appendChild(cardBody);
+    machineCard.appendChild(cardText);
+    
+    return machineCard;
 }
