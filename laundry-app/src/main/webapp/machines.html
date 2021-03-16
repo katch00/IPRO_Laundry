@@ -4,19 +4,41 @@
     <meta charset="UTF-8">
     <title>Machine Page</title>
     <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"><!-- Google web font "Open Sans", https://www.google.com/fonts/specimen/Open+Sans -->
+    <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css"> 
   </head>
-  <body>
-    <a href="index.html">Home Page</a>
-    <ul id="machine-container"></ul>
-    <form class="/machines">
-        <label>Select Location</label><br>
-        <select id = "locationList" name="locationList" onchange="ggetMachines()">
-            <option value= " ">Select Choice ...</option>
-            <option value = "Guns">Gunsaulus Hall</option>
-            <option value = "MSV">MSV</option>
-            <option value = "SSV">SSV</option>
-            <option value = "Carmen">Carmen</option>
-        </select><br>
-      </form>
+  <body >
+    <div class="navbar">
+    <div class="logo">
+        <a href="index.html">
+            <img src="https://static.thenounproject.com/png/1754024-200.png" alt="" width="130"/>
+        </a>
+    </div>
+    <nav>
+      <ul>
+      <li><a href="https://www.google.com">About Us</a></li>
+      <li><a href="https://www.google.com">Tutorials</a></li>
+      <li><a href="https://www.google.com">Sign In</a></li>
+      </ul>
+      </nav>
+    </div>
+    <div class="tm-wrapper-center">
+        <ul id="machine-container"></ul>
+    </div>
+    <div class="tm-wrapper-center">
+        <form class="/machines">
+            <label>Select Location</label><br>
+            <select id = "locationList" name="locationList" onchange="ggetMachines()">
+                <option value= " ">Select Choice ...</option>
+                <option value = "Guns">Gunsaulus Hall</option>
+                <option value = "MSV">MSV</option>
+                <option value = "SSV">SSV</option>
+                <option value = "Carmen">Carmen</option>
+            </select><br>
+        </form>
+    </div>
+    <br><br>    
   </body>
 </html>
