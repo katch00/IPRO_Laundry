@@ -95,10 +95,10 @@ function createMachineCard(machine) {
 
     const cardTitle = document.createElement('h5');
     cardTitle.className = 'card-title';
-    cardTitle.innerText = machine.status;
+    cardTitle.innerText = machine.name;
     const cardSubTitle = document.createElement('h6');
     cardSubTitle.className = 'card-subtitle text-muted';
-    cardSubTitle.innerText = machine.location;
+    cardSubTitle.innerText = machine.status;
     
     const cardText = document.createElement('p');
     cardText.className = 'card-text';
