@@ -75,7 +75,7 @@
    @-ms-viewport{width:device-width}
    @viewport{width:device-width}
    html{font-size:16px;-webkit-tap-highlight-color:transparent}
-   body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1rem;line-height:1.5;color:#373a3c;background-color:#fff}
+   body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1rem;line-height:1.5;color:#373a3c}
    [tabindex="-1"]:focus{outline:0!important}
    h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem}
    p{margin-top:0;margin-bottom:1rem}
