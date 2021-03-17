@@ -31,13 +31,13 @@ nav{float:right;}
 .logo img{float:left;}
 
 ul li{
-	color: white;
+	color: #7fb8f1;
   display: inline-block; padding:30px;
   font-size:40px; font-family: 'Open Sans', Helvetica, Arial, sans-serif;;
 }
 
 ul li:hover{
-  color: #c1dbf5;
+  color: black;
 
 }
 
