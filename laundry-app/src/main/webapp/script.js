@@ -54,15 +54,48 @@ function createMachineCard(machine) {
 
 
     const cardImg = document.createElement('img');
-    cardImg.src = 'https://static.thenounproject.com/png/1754024-200.png';
-    cardImg.className = 'center-block';
+    cardImg.className = 'cardIcon center-block';    
+    var status = machine.status;
+    var type = machine.type;
+    if(type == "dryer") //offline, idle, busy, unknown 
+    {
+        if(status == "offline" || status == "unknown")
+        {
+            cardImg.src = 'img/offlineDryer.png';
+        }
+        else if(status == "idle")
+        {
+            cardImg.src = 'img/greenDryer.png';
+        }
+        else if(status == "busy")
+        {
+            cardImg.src = 'img/redDryer.png';
+        }
+        
+    }
+    else if(type == "washer"){
+        if(status == "offline" || status == "unknown")
+        {
+            cardImg.src = 'img/offlineWasher.png';
+        }
+        else if(status == "idle")
+        {
+            cardImg.src = 'img/greenWasher.png';
+        }
+        else if(status == "busy")
+        {
+            cardImg.src = 'img/redWasher.png';
+        }
+    }
+    
+    
 
     const cardBody = document.createElement('div');
     cardBody.className = 'card-body';
 
     const cardTitle = document.createElement('h5');
     cardTitle.className = 'card-title';
-    cardTitle.innerText = machine.name;
+    cardTitle.innerText = machine.status;
     const cardSubTitle = document.createElement('h6');
     cardSubTitle.className = 'card-subtitle text-muted';
     cardSubTitle.innerText = machine.location;
