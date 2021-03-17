@@ -1,0 +1,147 @@
+/*
+
+Ocean Theme
+
+http://www.templatemo.com/tm-484-ocean
+
+-----------------------------*/
+body {
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 19px;
+	font-weight: 300;
+}
+a { color: #81b4eb;  }
+li,a {color: white;}
+a, button { transition: all 0.3s ease; }
+a:hover,
+a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+/* navbar */
+.navbar{
+  clear:both;
+  overflow:auto;
+  background-color: #6DAFFE;
+}
+
+nav{float:right;}
+
+.logo img{float:left;}
+
+ul li{
+	color: #7fb8f1;
+  display: inline-block; padding:30px;
+  font-size:40px; font-family: 'Open Sans', Helvetica, Arial, sans-serif;;
+}
+
+ul li:hover{
+  color: black;
+
+}
+
+
+/* 1. Intro
+--------------------*/
+.tm-section-intro {
+	background-image: url(../img/ocean-bg.jpg);
+	background-attachment: fixed;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100% 800px;
+	color: white;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	text-align: center;
+	height: 600px;
+}
+
+.tm-wrapper-center {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+}
+
+/* IE bug fix */
+.tm-wrapper-center > * {
+	-ms-flex: 0 1 auto;
+		-webkit-flex: 0 1 auto;
+	        flex: 0 1 auto;
+}
+
+.tm-section-intro-title {
+	font-size: 4.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.tm-section-intro-text {
+	font-size: 2rem;
+	margin-bottom: 4rem;
+	width: 100%;
+}
+
+.tm-btn-white-big {
+    font-size: 2.4rem;
+    color: #a1c7f1;
+    background-color: white;
+    padding: 0.75rem 2.5rem;
+    border-radius: 0.5rem;
+}
+
+.tm-btn-white-big:hover,
+.tm-btn-white-big:focus {
+	color: white;
+    background-color: #A2D1FF;
+}
+
+/* 1. Intro
+-----------------*/
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	/* IE10+ CSS styles go here */
+	.tm-section-intro {	background-attachment: scroll; }
+}
+
+@media (max-width: 1900px) {
+	.tm-section-intro {	background-size: 1900px 800px; }
+}
+
+@media (max-height: 800px) {
+	.tm-section-intro {
+		height: 100vh;
+		min-height: 480px;
+	}
+}
+
+@media (max-width: 480px) {
+	.tm-section-intro-title {
+	    font-size: 3.5rem;
+	    margin-bottom: 1.5rem;
+	}
+
+	.tm-section-intro-text {
+		font-size: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.tm-btn-white-big {
+		font-size: 1.6rem;
+		padding: 0.5rem 1.5rem;
+	}
+}

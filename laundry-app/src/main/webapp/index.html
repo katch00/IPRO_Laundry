@@ -1,12 +1,119 @@
 <!doctype html>
 <html>
   <head>
-    <title>App Engine Demo</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  </head>
-  <body>
-    <div id="result">Loading...</div>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>IIT Laundry App</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- load stylesheets -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"><!-- Google web font "Open Sans", https://www.google.com/fonts/specimen/Open+Sans -->
+    <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css">                    <!-- Templatemo style -->
+
+</head>
+  <body>
+    <!-- <div id="result">Loading...</div> -->
+    <div class="navbar">
+    <div class="logo">
+        <a href="index.html">
+            <img src="https://static.thenounproject.com/png/1754024-200.png" alt="" width="130"/>
+        </a>
+    </div>
+    <nav>
+      <ul>
+      <li><a href="https://www.google.com">About Us</a></li>
+      <li><a href="https://www.google.com">Tutorials</a></li>
+      <li><a href="https://www.google.com">Sign In</a></li>
+      </ul>
+      </nav>
+    </div>
+        <div class="container-fluid">
+            <div class="row">
+                <section class="tm-section-intro">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="tm-wrapper-center">
+                            <h1 class="tm-section-intro-title">IIT Laundry App</h1>
+                            <p class="tm-section-intro-text"><em>Finally, a solution to your laundry experience!</em><br>
+                            </p>
+                            <a href="machines.html" class="tm-btn-white-big">Explore</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> <!-- container-fluid -->
+
+        <!-- load JS files -->
+        <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery, https://jquery.com/download/ -->
+        <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+        <script src="js/bootstrap.min.js"></script>                 <!-- Bootstrap, http://v4-alpha.getbootstrap.com/ -->
+        <script src="js/jquery.touchSwipe.min.js"></script>         <!-- http://labs.rampinteractive.co.uk/touchSwipe/demos/ -->
+
+        <script>
+
+            $(document).ready(function(){
+
+                /* Smooth Scrolling
+                 * https://css-tricks.com/snippets/jquery/smooth-scrolling/
+                --------------------------------------------------------------*/
+                $('a[href*="#"]:not([href="#"])').click(function() {
+                    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+                        && location.hostname == this.hostname) {
+
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+
+                        if (target.length) {
+
+                            $('html, body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+
+                /* Enable swiping for tablets and mobile
+                 * http://lazcreative.com/blog/adding-swipe-support-to-bootstrap-carousel-3-0/
+                 ---------------------------------------------------------------------------------*/
+                if($(window).width() <= 991) {
+                    $(".carousel-inner").swipe( {
+                        //Generic swipe handler for all directions
+                        swipeLeft:function(event, direction, distance, duration, fingerCount) {
+                            $(this).parent().carousel('next');
+                        },
+                        swipeRight: function() {
+                            $(this).parent().carousel('prev');
+                        },
+                        //Default is 75px, set to 0 for demo so any distance triggers swipe
+                        threshold:0
+                    });
+                }
+
+                /* Handle window resize */
+                $(window).resize(function(){
+                    if($(window).width() <= 991) {
+                        $(".carousel-inner").swipe( {
+                            //Generic swipe handler for all directions
+                            swipeLeft:function(event, direction, distance, duration, fingerCount) {
+                                $(this).parent().carousel('next');
+                            },
+                            swipeRight: function() {
+                                $(this).parent().carousel('prev');
+                            },
+                            //Default is 75px, set to 0 for demo so any distance triggers swipe
+                            threshold:0
+                        });
+                     }
+                });
+
+            });
+
+        </script>
     <script>
 $(document).ready(function() {
   $.getJSON('/demo', function(data) {
