@@ -5,6 +5,15 @@ Ocean Theme
 http://www.templatemo.com/tm-484-ocean
 
 -----------------------------*/
+
+html {
+	background-image: url(../img/ocean-bg.jpg) ;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-size: 19px;
@@ -45,12 +54,12 @@ ul li:hover{
 /* 1. Intro
 --------------------*/
 .tm-section-intro {
-	background-image: url(../img/ocean-bg.jpg);
+	/* background-image: url(../img/ocean-bg.jpg);
 	background-attachment: fixed;
 	background-position: center top;
 	background-repeat: no-repeat;
 	background-size: 100% 800px;
-	color: white;
+	color: white; */
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
