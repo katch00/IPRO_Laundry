@@ -8,6 +8,7 @@
    -webkit-text-size-adjust:100%;
    -ms-text-size-adjust:100%
    }
+   
 
    body{margin:0}
 
@@ -32,6 +33,7 @@
    sup{top:-.5em}
    sub{bottom:-.25em}
    img{border:0}
+   .cardIcon{ width: auto; height: 200px;}
    svg:not(:root){overflow:hidden}
    figure{margin:1em 40px}
    hr{height:0;-webkit-box-sizing:content-box;box-sizing:content-box}
