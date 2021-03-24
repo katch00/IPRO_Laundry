@@ -50,26 +50,33 @@ function createMachineElement(machine) {
 
 function createMachineCard(machine) {
     const machineCard = document.createElement('div');
-    machineCard.className = 'card';
+    machineCard.className = 'card bg-card card-block d-flex text-md-center';
 
 
     const cardImg = document.createElement('img');
     cardImg.className = 'cardIcon center-block';    
     var status = machine.status;
     var type = machine.type;
+    
+    const cardSubTitle = document.createElement('h4');
+    cardSubTitle.innerText = status;
+
     if(type == "dryer") //offline, idle, busy, unknown 
     {
         if(status == "offline" || status == "unknown")
         {
             cardImg.src = 'img/offlineDryer.png';
+            cardSubTitle.className = 'card-subtitle text-muted';
         }
         else if(status == "idle")
         {
             cardImg.src = 'img/greenDryer.png';
+            cardSubTitle.className = 'card-subtitle text-success';
         }
         else if(status == "busy")
         {
             cardImg.src = 'img/redDryer.png';
+            cardSubTitle.className = 'card-subtitle text-danger';
         }
         
     }
@@ -77,38 +84,31 @@ function createMachineCard(machine) {
         if(status == "offline" || status == "unknown")
         {
             cardImg.src = 'img/offlineWasher.png';
+            cardSubTitle.className = 'card-subtitle text-muted';
         }
         else if(status == "idle")
         {
             cardImg.src = 'img/greenWasher.png';
+            cardSubTitle.className = 'card-subtitle text-success';
         }
         else if(status == "busy")
         {
             cardImg.src = 'img/redWasher.png';
+            cardSubTitle.className = 'card-subtitle text-dager';
         }
     }
-    
-    
-
+  
     const cardBody = document.createElement('div');
     cardBody.className = 'card-body';
 
-    const cardTitle = document.createElement('h5');
+    const cardTitle = document.createElement('h2');
     cardTitle.className = 'card-title';
     cardTitle.innerText = machine.name;
-    const cardSubTitle = document.createElement('h6');
-    cardSubTitle.className = 'card-subtitle text-muted';
-    cardSubTitle.innerText = machine.status;
-    
-    const cardText = document.createElement('p');
-    cardText.className = 'card-text';
-    cardText.innerText = machine.testing;
 
     machineCard.appendChild(cardImg);
     machineCard.appendChild(cardBody);
     machineCard.appendChild(cardTitle);
     machineCard.appendChild(cardSubTitle);
-    machineCard.appendChild(cardText);
     
     return machineCard;
 }

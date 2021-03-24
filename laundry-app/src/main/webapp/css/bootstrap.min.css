@@ -1180,6 +1180,7 @@
    a.text-danger:focus,a.text-danger:hover{color:#c9302c}
    .bg-inverse{color:#eceeef;background-color:#373a3c}
    .bg-faded{background-color:#f7f7f9}
+   .bg-card{background-color:#d3e6f7!important}
    .bg-primary{color:#fff!important;background-color:#0275d8!important}
    a.bg-primary:focus,a.bg-primary:hover{background-color:#025aa5}
    .bg-success{color:#fff!important;background-color:#5cb85c!important}
