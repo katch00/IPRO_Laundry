@@ -154,3 +154,89 @@ ul li:hover{
 		padding: 0.5rem 1.5rem;
 	}
 }
+
+
+/* 4. icon and text 4 boxes
+----------------------------*/
+.tm-section {
+	padding-top: 6rem;
+	padding-bottom: 6rem;
+}
+
+.tm-blue-bg-row { background-color: #b9d6f4; }
+
+.tm-section-title {
+	font-size: 2.1rem;
+	margin-bottom: 1.8rem;
+}
+
+.tm-section-subtitle {
+	font-size: 1.4rem;
+	line-height: 1.6;
+	max-width: 700px;
+	margin: 0 auto 5rem;
+}
+
+.tm-icon-text-box {
+	background-color: #d3e6f8;
+	border: 1px solid white;
+	padding: 3rem;
+	/* max-width: 400px; */
+}
+
+.tm-icon-text-box-video {
+	background-color: #d3e6f8;
+	border: 1px solid white;
+	padding: 3rem;
+	max-width: 750px;
+}
+
+.tm-icon-text-box > .fa {
+	color: #81b4eb;
+	margin-bottom: 2rem;
+	width: 100%;
+	text-align: center; /*http://stackoverflow.com/questions/19162889/how-to-center-font-awesome-icons-horizontally*/
+}
+
+.tm-icon-text-boxes-container {
+    max-width: 1760px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+}
+
+.tm-icon-text-box-title { margin-bottom: 1.4rem; text-align: center;}
+
+.tm-icon-text-box-description {
+	line-height: 1.8;
+	margin-bottom: 0;
+}
+
+/* 4. icon and text 4 boxes
+----------------------------*/
+@media (max-width: 1199px) {
+	.tm-icon-text-box {	margin: 0 auto 30px; }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+	.tm-icon-text-box {	padding: 10%; }
+}
+
+@media (max-width: 991px) {
+	.tm-icon-text-boxes-container { max-width: 800px; }
+	.tm-section {
+		padding-top: 5%;
+    	padding-bottom: 4%;
+	}
+
+	.tm-section-title {	margin-bottom: 1rem; }
+
+	.tm-section-subtitle { margin-bottom: 2rem;	}
+}
+
+@media (max-width: 767px) {
+	.tm-section {
+		padding-top: 10%;
+    	padding-bottom: 8%;
+	}
+}
