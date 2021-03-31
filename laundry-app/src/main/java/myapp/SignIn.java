@@ -42,8 +42,8 @@ public class SignIn extends HttpServlet {
           "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Open+Sans:300,400\"><link rel=\"stylesheet\" href=\"font-awesome-4.5.0/css/font-awesome.min.css\"><link rel=\"stylesheet\" href=\"css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"css/templatemo-style.css\">");
       response.getWriter().println(
           "<div class=\"navbar\"><div class=\"logo\"><a href=\"uploadMachine.html\"><img src=\"https://static.thenounproject.com/png/1754024-200.png\" width=\"130\"/></a></div><nav><ul><li><a href=\"index.html\">Home</a></li><li><a href=\"resources.html\">Resources</a></li><li><a href=\"/signin\">Sign In</a></li></ul></nav></div>");
-      response.getWriter().println("<h1>Hello " + userEmail + "!</h1>");
-      response.getWriter().println("<h2>Logout <a href=\"" + logoutUrl + "\">here</a>.</h2>");
+      response.getWriter().println("<br><h1 class=\"tm-wrapper-center\">Hello " + userEmail + "!</h1>");
+      response.getWriter().println("<br><h2 class=\"tm-wrapper-center\"><a href=\"" + logoutUrl + "\">Logout</a></h2>");
       response.getWriter().println("</div></body>");
       response.getWriter().println("</body>");
     } else {
