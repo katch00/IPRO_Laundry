@@ -12,6 +12,14 @@
         <servlet-name>machines</servlet-name>
         <url-pattern>/machines</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>signin</servlet-name>
+        <servlet-class>myapp.SignIn</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signin</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
      <static-files>
     <!-- prevent unwanted caching when accessing via the web preview server -->
     <include path="/**" expiration="0s" />
