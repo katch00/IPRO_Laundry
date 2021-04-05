@@ -15,7 +15,7 @@ function ggetMachines() {
         count++;
         const colEl = document.createElement('div');
         colEl.className = 'col-sm-3';
-        colEl.appendChild(createMachineCard(message));
+	colEl.appendChild(createMachineCard(message));
         if(count <5)
         {
             row1.appendChild(colEl);            
@@ -60,6 +60,17 @@ function createMachineCard(machine) {
     
     const cardSubTitle = document.createElement('h4');
     cardSubTitle.innerText = status;
+    
+    var time = machine.timeRemaining;
+    const cardTime = document.createElement('h6');
+    if(status == "busy") {
+      cardTime.innerText = time.toString() + " min remaining"; 
+      cardTime.className = 'card-time';
+    }
+    else {
+      cardTime.innerText = "-";
+      cardTime.className = 'card-time text-empty';
+    }
 
     if(type == "dryer") //offline, idle, busy, unknown 
     {
@@ -81,6 +92,8 @@ function createMachineCard(machine) {
         
     }
     else if(type == "washer"){
+	
+	    
         if(status == "offline" || status == "unknown")
         {
             cardImg.src = 'img/offlineWasher.png';
@@ -94,10 +107,11 @@ function createMachineCard(machine) {
         else if(status == "busy")
         {
             cardImg.src = 'img/redWasher.png';
-            cardSubTitle.className = 'card-subtitle text-dager';
+            cardSubTitle.className = 'card-subtitle text-danger';
         }
     }
   
+   
     const cardBody = document.createElement('div');
     cardBody.className = 'card-body';
 
@@ -109,6 +123,7 @@ function createMachineCard(machine) {
     machineCard.appendChild(cardBody);
     machineCard.appendChild(cardTitle);
     machineCard.appendChild(cardSubTitle);
+    machineCard.appendChild(cardTime);
     
     return machineCard;
 }

@@ -112,6 +112,7 @@ ul li:hover{
     background-color: white;
     padding: 0.75rem 2.5rem;
     border-radius: 0.5rem;
+    border-color: transparent;
 }
 
 .tm-btn-white-big:hover,
