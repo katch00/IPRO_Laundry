@@ -39,47 +39,8 @@ public class Machines extends HttpServlet {
         Query query = new Query("machine").setFilter(fp);
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-	
-/*	//reset datastore, clear the list
-        Query q = new Query("machine");
-        PreparedQuery toDelete  = datastore.prepare(q);
-	for (Entity entity : toDelete.asIterable()) {
-            //System.out.println("delete : " + (int)entity.getProperty("id"));
-	    datastore.delete(entity.getKey());
-	}
-	
-       //Start the simulator
-       Simulator simulator = new Simulator();
-       simulator.start();
-       ArrayList<Machine> allMachines = new ArrayList<>();
-       allMachines.addAll(simulator.getMachines(requestLocation));
-      
-	
-       //load simulator machines to datastore
-       System.out.println("first for loop"); 
-       for(int i=0; i < allMachines.size(); i++) {
-	 Machine m = allMachines.get(i);
-	 Entity mchnEntity = new Entity("machine");
-	 mchnEntity.setProperty("id", m.getID());
-	 mchnEntity.setProperty("name", m.getName());
-	 mchnEntity.setProperty("type", m.getType());
-	 mchnEntity.setProperty("location", m.getLocation());
-	 mchnEntity.setProperty("status", m.getStatus());
-         mchnEntity.setProperty("end", m.getEnd().format(formatter));
-	 mchnEntity.setProperty("timestamp", m.getTimeRemaining());
-	 datastore.put(mchnEntity);
-
-	 System.out.println( (long)mchnEntity.getProperty("id") + " " +  (String)mchnEntity.getProperty("name") + " " + 
-                             (String)mchnEntity.getProperty("type") + " " + (String)mchnEntity.getProperty("location") + " " +
-                              (String)mchnEntity.getProperty("status") + " " + (String)mchnEntity.getProperty("end") + " " + 
-			      (long)mchnEntity.getProperty("timestamp"));
-	 }
-	
-   	
-        //get  machines from datastore
-	PreparedQuery results = datastore.prepare(q);*/
-
-	PreparedQuery results = datastore.prepare(query);
+	      
+        PreparedQuery results = datastore.prepare(query);
 	
 	ArrayList<Machine> machines = new ArrayList<>();
         for (Entity entity : results.asIterable()) {

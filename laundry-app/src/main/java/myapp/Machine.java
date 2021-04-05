@@ -86,7 +86,7 @@ public class Machine implements Comparable{
   @Override //for sorting the list
     public int compareTo(Object o) {
         long idCompare = ((Machine)o).getID();
-        return this.id.intValue() - idCompare.intValue();
+        return (int)(this.id  - idCompare);
     }
 
 }
