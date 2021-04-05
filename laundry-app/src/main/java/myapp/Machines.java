@@ -21,64 +21,121 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 
 //@WebServlet("/machines")
 public class Machines extends HttpServlet {
+   
+       	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String requestLocation = getParameter(req, "locationList", "MSV");
         FilterPredicate fp = new FilterPredicate("location", FilterOperator.EQUAL, requestLocation);
 
         Query query = new Query("machine").setFilter(fp);
-   
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        PreparedQuery results = datastore.prepare(query);
 
-        List<Machine> machines = new ArrayList<>();
-        for (Entity entity : results.asIterable()) {
-            long id = entity.getKey().getId();
-            String name = (String) entity.getProperty("name");
-            long timestamp = (long) entity.getProperty("timestamp");
-            String location = (String) entity.getProperty("location");
-            String status = (String) entity.getProperty("status");
-            String type = (String) entity.getProperty("type");
-            
-            String testing = type + " " + name + "'s status is currently " + status;
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	
+/*	//reset datastore, clear the list
+        Query q = new Query("machine");
+        PreparedQuery toDelete  = datastore.prepare(q);
+	for (Entity entity : toDelete.asIterable()) {
+            //System.out.println("delete : " + (int)entity.getProperty("id"));
+	    datastore.delete(entity.getKey());
+	}
+	
+       //Start the simulator
+       Simulator simulator = new Simulator();
+       simulator.start();
+       ArrayList<Machine> allMachines = new ArrayList<>();
+       allMachines.addAll(simulator.getMachines(requestLocation));
       
-            Machine comment = new Machine(id, name, timestamp, location, status, type, testing);
-            machines.add(comment);
+	
+       //load simulator machines to datastore
+       System.out.println("first for loop"); 
+       for(int i=0; i < allMachines.size(); i++) {
+	 Machine m = allMachines.get(i);
+	 Entity mchnEntity = new Entity("machine");
+	 mchnEntity.setProperty("id", m.getID());
+	 mchnEntity.setProperty("name", m.getName());
+	 mchnEntity.setProperty("type", m.getType());
+	 mchnEntity.setProperty("location", m.getLocation());
+	 mchnEntity.setProperty("status", m.getStatus());
+         mchnEntity.setProperty("end", m.getEnd().format(formatter));
+	 mchnEntity.setProperty("timestamp", m.getTimeRemaining());
+	 datastore.put(mchnEntity);
+
+	 System.out.println( (long)mchnEntity.getProperty("id") + " " +  (String)mchnEntity.getProperty("name") + " " + 
+                             (String)mchnEntity.getProperty("type") + " " + (String)mchnEntity.getProperty("location") + " " +
+                              (String)mchnEntity.getProperty("status") + " " + (String)mchnEntity.getProperty("end") + " " + 
+			      (long)mchnEntity.getProperty("timestamp"));
+	 }
+	
+   	
+        //get  machines from datastore
+	PreparedQuery results = datastore.prepare(q);*/
+
+	PreparedQuery results = datastore.prepare(query);
+	
+	ArrayList<Machine> machines = new ArrayList<>();
+        for (Entity entity : results.asIterable()) {
+            long id = (long) entity.getProperty("id");
+            String name = (String) entity.getProperty("name");
+	    String type = (String) entity.getProperty("type");
+            String location = (String) entity.getProperty("location");
+	    String status = (String) entity.getProperty("status");
+	    LocalDateTime end =  LocalDateTime.parse((String)entity.getProperty("end"));
+            String testing = type + " " + id + "'s status is currently " + status;
+	    Machine comment = new Machine(id, name, type, location, status, end, testing);
+	    machines.add(comment);
         }
 
-        String json = new Gson().toJson(machines);
-   
+        Collections.sort(machines);
+       	String json = new Gson().toJson(machines);
 
         resp.setContentType("application/json;");
-        resp.getWriter().println(json); 
-        
+        resp.getWriter().println(json);
+
     }
 
     @Override
-        public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String machineName = getParameter(request, "machine-name-input", "");
-        String location = getParameter(request, "machine-location-input", "MSV");
-        String machineType = getParameter(request, "machine-type-input", "washer");
-        String status = getParameter(request, "machine-status-input", "online");
-        long timestamp = System.currentTimeMillis();
-    
-
-        Entity mchnEntity = new Entity("machine");
-        mchnEntity.setProperty("name", machineName);
-        mchnEntity.setProperty("location", location);
-        mchnEntity.setProperty("type", machineType);
-        mchnEntity.setProperty("status", status);
-        mchnEntity.setProperty("timestamp", timestamp);
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        datastore.put(mchnEntity);
+       	
+	//clear the datastore, delete all machines
+	Query query = new Query("machine");
+        PreparedQuery toDelete = datastore.prepare(query);
+        for (Entity entity : toDelete.asIterable()) {
+	   datastore.delete(entity.getKey());
+	}
+	
+        //start the simulator
+	Simulator simulator = new Simulator();
+	simulator.start(); 
+	ArrayList<Machine> allMachines = new ArrayList<>();
+	allMachines.addAll(simulator.getMachines());
 
-        response.sendRedirect("/index.html");
+        //up1oad all simulator machines to datastore
+        for(int i=0; i < allMachines.size(); i++) {
+            Machine m = allMachines.get(i);
+            Entity mchnEntity = new Entity("machine");
+            mchnEntity.setProperty("id", m.getID());
+            mchnEntity.setProperty("name", m.getName());
+            mchnEntity.setProperty("type", m.getType());
+            mchnEntity.setProperty("location", m.getLocation());
+	    mchnEntity.setProperty("status", m.getStatus());
+            mchnEntity.setProperty("end", m.getEnd().format(formatter));
+            datastore.put(mchnEntity);
+        }
+
+	response.sendRedirect("/machines.html");
     }
-  
+
     private String getParameter(HttpServletRequest request, String name, String defaultValue) {
         String value = request.getParameter(name);
         if (value == null) {
@@ -87,3 +144,4 @@ public class Machines extends HttpServlet {
         return value;
     }
 }
+
