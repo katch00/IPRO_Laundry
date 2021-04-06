@@ -800,6 +800,7 @@
    .card-block{padding:1.25rem}
    .card-title{margin-bottom:.75rem}
    .card-subtitle{margin-top:-.375rem;margin-bottom:0}
+   .card-time{margin-top:.375rem;margin-bottom:0}
    .card-text:last-child{margin-bottom:0}
    .card-link:hover{text-decoration:none}
    .card-link+.card-link{margin-left:1.25rem}
@@ -1168,6 +1169,7 @@
    .font-weight-bold{font-weight:700}
    .font-italic{font-style:italic}
    .text-muted{color:#818a91}
+   .text-empty{color: #d3e6f7!important}
    .text-primary{color:#0275d8!important}
    a.text-primary:focus,a.text-primary:hover{color:#025aa5}
    .text-success{color:#5cb85c!important}
