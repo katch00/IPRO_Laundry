@@ -2,8 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="94081382333-ucmdkutji754lsf520g8cl4eokk1gnot.apps.googleusercontent.com">
     <title>Resources Page</title>
+
     <script type="text/javascript" src="script.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"><!-- Google web font "Open Sans", https://www.google.com/fonts/specimen/Open+Sans -->
     <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
     <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
@@ -20,7 +24,27 @@
       <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="resources.html">Resources</a></li>
-      <li><a href="/signin">Sign In</a></li>
+      <li id="sign-in"><div class="g-signin2" id="g-signin-2" data-onsuccess="onSignIn"></div></li>
+      <li id="sign-out" style="display:none;"><a href="#" onClick="onSignOut()">Sign Out</a> </li>
+      <!-- Will not work with these functions anywhere else, must be in the html files-->
+      <script>
+        function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('Full Name: ' + profile.getName());
+        document.getElementById('sign-in').style.display = "none";
+        document.getElementById('sign-out').style.display = "";
+        }
+      </script>
+      <script>
+        function onSignOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+            document.getElementById('sign-in').style.display = "";
+            document.getElementById('sign-out').style.display = "none";    
+        }
+      </script>
       </ul>
       </nav>
     </div>
@@ -230,7 +254,5 @@
         </section>
 
     </div> <!-- row -->
-
-
   </body>
 </html>

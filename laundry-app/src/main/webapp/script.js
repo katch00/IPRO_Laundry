@@ -112,3 +112,18 @@ function createMachineCard(machine) {
     
     return machineCard;
 }
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  document.getElementById('sign-in').style.display = "none";
+  document.getElementById('sign-out').style.display = "block";
+}
+
+function onSignOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+    document.getElementById('sign-in').style.display = "display:block;";
+    document.getElementById('sign-out').style.display = "display:none;";    
+  }
