@@ -9,9 +9,11 @@ http://www.templatemo.com/tm-484-ocean
 html {
 	background-image: url(../img/ocean-bg.jpg) ;
 	-webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+ 	-moz-background-size: cover;
+ 	-o-background-size: cover;
+ 	background-size: 100% 100%;
+	width: 100%;
+  	height: 100%;
 }
 
 body {
@@ -27,12 +29,17 @@ a:focus {
 	text-decoration: none;
 	outline: none;
 }
+a.active {
+	color: #0275d8;
+}
 
 /* navbar */
 .navbar{
-  clear:both;
-  overflow:auto;
+  /* clear:both;
+  overflow:auto; */
   background-color: #6DAFFE;
+  padding:.2rem .6rem;
+  line-height: 1;
 }
 
 nav{float:right;}
@@ -41,8 +48,10 @@ nav{float:right;}
 
 ul li{
 	color: #7fb8f1;
-  display: inline-block; padding:30px;
-  font-size:40px; font-family: 'Open Sans', Helvetica, Arial, sans-serif;;
+ 	display: inline-block;
+	padding:25px;
+ 	font-size:40px;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 ul li:hover{
@@ -50,6 +59,11 @@ ul li:hover{
 
 }
 
+/* allows the video on the resources page to scale appropriately */
+video {
+  width: 100%;
+  height: auto;
+}
 
 /* 1. Intro
 --------------------*/
