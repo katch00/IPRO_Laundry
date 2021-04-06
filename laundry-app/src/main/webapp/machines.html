@@ -1,69 +1,69 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="google-signin-client_id" content="94081382333-ucmdkutji754lsf520g8cl4eokk1gnot.apps.googleusercontent.com">
-    <title>Machine Page</title>
-    <script type="text/javascript" src="script.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"><!-- Google web font "Open Sans", https://www.google.com/fonts/specimen/Open+Sans -->
-    <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css"> 
-  </head>
-  <body >
-    <div class="navbar">
-    <div class="logo">
-        <a href="uploadMachine.html">
-            <img src="https://static.thenounproject.com/png/1754024-200.png" alt="" width="130"/>
-        </a>
-    </div>
-    <nav>
-      <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li id="sign-in"><div class="g-signin2" id="g-signin-2" data-onsuccess="onSignIn"></div></li>
-      <li id="sign-out" style="display:none;"><a href="#" onClick="onSignOut()">Sign Out</a> </li>
-      <!-- Will not work with these functions anywhere else, must be in the html files-->
-      <script>
-        function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('Full Name: ' + profile.getName());
-        document.getElementById('sign-in').style.display = "none";
-        document.getElementById('sign-out').style.display = "";
-        }
-      </script>
-      <script>
-        function onSignOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-            document.getElementById('sign-in').style.display = "";
-            document.getElementById('sign-out').style.display = "none";    
-        }
-      </script>
-      </ul>
-      </nav>
-    </div>
-    <br>
-    <h1 class="tm-wrapper-center" id="location-title">Choose a location here!</h1>
-    <br>
-    <div id="machine-container"></div>  
-    </div>    
-    <div class="tm-wrapper-center">
-        <form class="/machines">
-            <label>Select Location</label><br>
-            <select id = "locationList" class="form-control-lg" name="locationList" onchange="ggetMachines()">
-                <option value= " ">Select Choice ...</option>
-                <option value = "Guns">Gunsaulus Hall</option>
-                <option value = "MSV">MSV</option>
-                <option value = "SSV">SSV</option>
-                <option value = "Carmen">Carmen</option>
-            </select><br>
-        </form>
-    </div>
-    <br><br>
-    </div>  
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="google-signin-client_id" content="94081382333-ucmdkutji754lsf520g8cl4eokk1gnot.apps.googleusercontent.com">
+        <title>Machine Page</title>
+        <script type="text/javascript" src="script.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"><!-- Google web font "Open Sans", https://www.google.com/fonts/specimen/Open+Sans -->
+        <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
+        <link rel="stylesheet" href="css/templatemo-style.css">
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"> <!-- this pointed to uploadMachine.html before. assuming it was temporary?-->
+                    <img src="https://static.thenounproject.com/png/1754024-200.png" alt="Logo" height="115" width="115"/>
+                </a>
+            </div>
+            <nav class="navbar navbar-expand-sm bg-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+                    <li id="sign-in"><div class="g-signin2" id="g-signin-2" data-onsuccess="onSignIn"></div></li>
+                    <li id="sign-out" style="display:none;"><a href="#" onClick="onSignOut()">Sign Out</a> </li>
+                    <!-- Will not work with these functions anywhere else, must be in the html files-->
+                    <script>
+                         function onSignIn(googleUser) {
+                             var profile = googleUser.getBasicProfile();
+                             document.getElementById('sign-in').style.display = "none";
+                             document.getElementById('sign-out').style.display = "";
+                         }
+                    </script>
+                    <script>
+                        function onSignOut() {
+                            var auth2 = gapi.auth2.getAuthInstance();
+                            auth2.signOut().then(function () {
+                                console.log('User signed out.');
+                            });
+                            document.getElementById('sign-in').style.display = "";
+                            document.getElementById('sign-out').style.display = "none";    
+                        }
+                    </script>
+                </ul>
+            </nav>
+        </div>
+        <br>
+        <h1 class="tm-wrapper-center" id="location-title">Choose a location here!</h1>
+        <br>
+        <div id="machine-container"></div>
+        <div class="tm-wrapper-center">
+            <form class="/machines">
+                <label>Select Location</label><br>
+                <select id = "locationList" class="form-control-lg" name="locationList" onchange="ggetMachines()">
+                    <option value= " ">Select Choice ...</option>
+                    <option value = "Guns">Gunsaulus Hall</option>
+                    <option value = "MSV">MSV</option>
+                    <option value = "SSV">SSV</option>
+                    <option value = "Carmen">Carmen</option>
+                </select><br>
+            </form>
+        </div>
+        <br><br> 
+        <!-- adding this empty script tag prevents an unnecessary navigation bar animation from running, for some reason -->
+        <script>
+        </script>
+    </body>
 </html>
