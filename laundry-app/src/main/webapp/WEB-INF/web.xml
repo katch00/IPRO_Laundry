@@ -8,19 +8,20 @@
         <servlet-name>machines</servlet-name>
         <servlet-class>myapp.Machines</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>machines</servlet-name>
+        <url-pattern>/machines</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>email</servlet-name>
         <servlet-class>myapp.EmailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>machines</servlet-name>
-        <url-pattern>/machines</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>email</servlet-name>
         <url-pattern>/email</url-pattern>
     </servlet-mapping>
-     <static-files>
+    <static-files>
     <!-- prevent unwanted caching when accessing via the web preview server -->
     <include path="/**" expiration="0s" />
     </static-files>

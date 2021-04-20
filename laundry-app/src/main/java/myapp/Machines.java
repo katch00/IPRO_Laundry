@@ -42,17 +42,18 @@ public class Machines extends HttpServlet {
 	      
         PreparedQuery results = datastore.prepare(query);
 	
-	ArrayList<Machine> machines = new ArrayList<>();
-        for (Entity entity : results.asIterable()) {
+	    ArrayList<Machine> machines = new ArrayList<>();
+        for (Entity entity : results.asIterable()) 
+        {
             long id = (long) entity.getProperty("id");
             String name = (String) entity.getProperty("name");
-	    String type = (String) entity.getProperty("type");
+	        String type = (String) entity.getProperty("type");
             String location = (String) entity.getProperty("location");
-	    String status = (String) entity.getProperty("status");
-	    LocalDateTime end =  LocalDateTime.parse((String)entity.getProperty("end"));
+	        String status = (String) entity.getProperty("status");
+	        LocalDateTime end =  LocalDateTime.parse((String)entity.getProperty("end"));
             String testing = type + " " + id + "'s status is currently " + status;
-	    Machine comment = new Machine(id, name, type, location, status, end, testing);
-	    machines.add(comment);
+	        Machine comment = new Machine(id, name, type, location, status, end, testing);
+	        machines.add(comment);
         }
 
         Collections.sort(machines);
@@ -68,18 +69,18 @@ public class Machines extends HttpServlet {
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
        	
-	//clear the datastore, delete all machines
-	Query query = new Query("machine");
-        PreparedQuery toDelete = datastore.prepare(query);
-        for (Entity entity : toDelete.asIterable()) {
-	   datastore.delete(entity.getKey());
-	}
+	    //clear the datastore, delete all machines
+	    Query query = new Query("machine");
+            PreparedQuery toDelete = datastore.prepare(query);
+            for (Entity entity : toDelete.asIterable()) {
+	        datastore.delete(entity.getKey());
+	    }
 	
         //start the simulator
-	Simulator simulator = new Simulator();
-	simulator.start(); 
-	ArrayList<Machine> allMachines = new ArrayList<>();
-	allMachines.addAll(simulator.getMachines());
+	    Simulator simulator = new Simulator();
+	    simulator.start(); 
+	    ArrayList<Machine> allMachines = new ArrayList<>();
+	    allMachines.addAll(simulator.getMachines());
 
         //up1oad all simulator machines to datastore
         for(int i=0; i < allMachines.size(); i++) {
@@ -89,12 +90,12 @@ public class Machines extends HttpServlet {
             mchnEntity.setProperty("name", m.getName());
             mchnEntity.setProperty("type", m.getType());
             mchnEntity.setProperty("location", m.getLocation());
-	    mchnEntity.setProperty("status", m.getStatus());
+	        mchnEntity.setProperty("status", m.getStatus());
             mchnEntity.setProperty("end", m.getEnd().format(formatter));
             datastore.put(mchnEntity);
         }
 
-	response.sendRedirect("/machines.html");
+	    response.sendRedirect("/machines.html");
     }
 
     private String getParameter(HttpServletRequest request, String name, String defaultValue) {
