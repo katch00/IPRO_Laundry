@@ -27,18 +27,23 @@ public class EmailServlet extends HttpServlet {
     
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userEmail = getParameter(request, "emailAddress", "");
+        String machineNum = getParameter(request, "machineNum", "");
+        String machineLoc = getParameter(request, "machineLoc", "");
+        String message = "Machine number " + machineNum + " in " + machineLoc + " is now available!";
         System.out.println("help");
-        try{
-            sendEmail();
+        try
+        {
+            sendEmail(message, userEmail);
         }
         catch(Exception e)
         {
-
+            //reponse for error
         }
         response.sendRedirect("/machines.html");
     }
 
-    public static void sendEmail() throws MailjetException, MailjetSocketTimeoutException {
+    public static void sendEmail(String message, String userEmail) throws MailjetException, MailjetSocketTimeoutException {
       MailjetClient client;
     MailjetRequest request;
     MailjetResponse response;
@@ -48,18 +53,27 @@ public class EmailServlet extends HttpServlet {
     .put(new JSONObject()
     .put(Emailv31.Message.FROM, new JSONObject()
     .put("Email", "nstroupe@hawk.iit.edu")
-    .put("Name", "Nat"))
+    .put("Name", "IIT Laundry"))
     .put(Emailv31.Message.TO, new JSONArray()
     .put(new JSONObject()
-    .put("Email", "nstroupe@hawk.iit.edu")
-    .put("Name", "Nat")))
+    .put("Email", userEmail)
+    .put("Name", "Student"))) //get name?
     .put(Emailv31.Message.SUBJECT, "Greetings from Mailjet.")
     .put(Emailv31.Message.TEXTPART, "My first Mailjet email")
-    .put(Emailv31.Message.HTMLPART, "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!")
+    .put(Emailv31.Message.HTMLPART, message)
     .put(Emailv31.Message.CUSTOMID, "AppGettingStartedTest")));
     response = client.post(request);
     System.out.println(response.getStatus());
     System.out.println(response.getData());
         
+    }
+
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+        String value = request.getParameter(name);
+        if (value == null) 
+        {
+            return defaultValue;
+        }
+        return value;
     }
 }
