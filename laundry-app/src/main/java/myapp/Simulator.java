@@ -143,5 +143,38 @@ public class Simulator{
 
   }
 
+public ArrayList<String> getLocationList() {
+    return locations;
+}
+
+public int[] numAvailable(String location) {
+    Machine mc;
+    int dCount = 0, wCount = 0;
+    int[] count = {0,0};
+    calculateRemaining();
+
+    for(int i=0; i < washers.size(); i++){
+      mc = washers.get(i);
+      if (mc.getLocation().equals(location)) {
+        if(mc.getStatus().equals("idle")){
+          wCount++;
+        }
+     }
+    }
+
+    for(int i = 0; i < dryers.size(); i++){
+      mc = dryers.get(i);
+      if (mc.getLocation().equals(location)) {
+          if(mc.getStatus().equals("idle")){
+            dCount++;
+          }
+      }
+    }
+    count[0] = wCount;
+    count[1] = dCount;
+    System.out.println("sending " + wCount + " " + dCount);
+    return count.clone();
+  }
+
 
 }
