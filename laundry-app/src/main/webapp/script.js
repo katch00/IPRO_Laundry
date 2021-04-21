@@ -1,7 +1,42 @@
+var washerCounter = 0;
+var dryerCounter = 0;
 function ggetMachines() {
     let location = document.getElementById('locationList').value;
     var pageTitle = document.getElementById('location-title');
     pageTitle.innerText = location;
+    
+    var exist = document.getElementById('refresh-div');
+    if (exist == null) {
+        var refreshDiv = document.createElement('div');
+        refreshDiv.className = 'tm-wrapper-center';
+        refreshDiv.setAttribute("id", "refresh-div");
+        
+        var washerAvail = document.createElement('h5');
+        var dryerAvail = document.createElement('h5');
+        washerAvail.setAttribute("id", "washerAvail");
+        dryerAvail.setAttribute("id", "dryerAvail");
+        refreshDiv.appendChild(washerAvail);
+        refreshDiv.appendChild(dryerAvail);
+        
+        var refreshBtn = document.createElement('button');
+        refreshBtn.innerText = "Refresh"; 
+        refreshBtn.className = 'tm-btn-refresh';
+        refreshBtn.setAttribute("type", "button");
+        refreshBtn.setAttribute("onClick", "ggetMachines()");
+        refreshDiv.appendChild(refreshBtn);
+
+        pageTitle.parentNode.insertBefore(refreshDiv,pageTitle.nextSibling);
+    }
+
+    exist = document.getElementById('avail-div');
+    if(exist != null) {
+        var rb = document.getElementById('quick-view-div');
+        rb.removeChild(rb.children[1]);
+    }
+
+
+    washerCounter = 0;
+    dryerCounter = 0;
     fetch(`/machines?locationList=${location}`).then(response => response.json()).then((messages) => {
     var gridEl = document.getElementById('machine-container');
     while( gridEl.firstChild ){
@@ -31,8 +66,8 @@ function ggetMachines() {
     gridEl.appendChild(row1);
     gridEl.appendChild(row2);
     gridEl.appendChild(row3);    
+    displayNumAvailable();
   });
-
 }
 
 
@@ -52,7 +87,6 @@ function createMachineCard(machine) {
     const machineCard = document.createElement('div');
     machineCard.className = 'card bg-card card-block d-flex text-md-center';
 
-
     const cardImg = document.createElement('img');
     cardImg.className = 'cardIcon center-block';    
     var status = machine.status;
@@ -71,7 +105,7 @@ function createMachineCard(machine) {
       cardTime.innerText = "-";
       cardTime.className = 'card-time text-empty';
     }
-
+    
     if(type == "dryer") //offline, idle, busy, unknown 
     {
         if(status == "offline" || status == "unknown")
@@ -81,6 +115,7 @@ function createMachineCard(machine) {
         }
         else if(status == "idle")
         {
+            dryerCounter++;
             cardImg.src = 'img/greenDryer.png';
             cardSubTitle.className = 'card-subtitle text-success';
         }
@@ -101,6 +136,7 @@ function createMachineCard(machine) {
         }
         else if(status == "idle")
         {
+            washerCounter++;
             cardImg.src = 'img/greenWasher.png';
             cardSubTitle.className = 'card-subtitle text-success';
         }
@@ -126,4 +162,42 @@ function createMachineCard(machine) {
     machineCard.appendChild(cardTime);
     
     return machineCard;
+}
+
+function displayNumAvailable() {
+   var washerAvail = document.getElementById('washerAvail');
+   var dryerAvail = document.getElementById('dryerAvail');
+   washerAvail.innerText = "Washers: " + washerCounter + " available";
+   dryerAvail.innerText = "Dryers: " + dryerCounter + " available";
+}
+
+function quickView(){
+    var exist = document.getElementById('avail-div');
+    if (exist == null) {        
+    	var availDiv = document.createElement('div');
+        availDiv.setAttribute("id", "avail-div");
+        
+        fetch(`/machines?quick=true`).then(response => response.json()).then((messages) => {
+            messages.forEach((message) => {
+                var loc = document.createElement('h5');
+                loc.className = 'tm-section-avail';
+                loc.innerText = message.location + " - " + message.washerAvail + " washers and " + message.dryerAvail + " dryers are available";
+                availDiv.appendChild(loc);
+            })
+        });
+        var quickView = document.getElementById('quick-view-btn');
+        quickView.parentNode.insertBefore(availDiv,quickView.nextSibling);
+    }
+    else {
+        fetch(`/machines?quick=true`).then(response => response.json()).then((messages) => {
+            messages.forEach((message) => {
+                var availDiv = document.getElementById('avail-div');
+                availDiv.removeChild(availDiv.firstChild);
+                var loc = document.createElement('h5');
+                loc.className = 'tm-section-avail';
+                loc.innerText = message.location + " - " + message.washerAvail + " washers and " + message.dryerAvail + " dryers are available";
+                availDiv.appendChild(loc);
+            })
+        });
+    }
 }
