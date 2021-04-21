@@ -1,3 +1,4 @@
+package laundrySimulator;
 import java.util.ArrayList;
 
 public class Simulator{
