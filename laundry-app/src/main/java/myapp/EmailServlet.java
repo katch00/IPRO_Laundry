@@ -18,7 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class EmailServlet extends HttpServlet {
-    
+
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userEmail = getParameter(request, "email", "");
