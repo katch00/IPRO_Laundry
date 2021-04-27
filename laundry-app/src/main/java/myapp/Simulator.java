@@ -147,6 +147,7 @@ public ArrayList<String> getLocationList() {
     return locations;
 }
 
+//returns number of available machines in all locations
 public int[] numAvailable(String location) {
     Machine mc;
     int dCount = 0, wCount = 0;
@@ -172,7 +173,6 @@ public int[] numAvailable(String location) {
     }
     count[0] = wCount;
     count[1] = dCount;
-    System.out.println("sending " + wCount + " " + dCount);
     return count.clone();
   }
 
