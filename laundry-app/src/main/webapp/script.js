@@ -1,5 +1,6 @@
 var washerCounter = 0;
 var dryerCounter = 0;
+var timer;
 function ggetMachines() {
     let location = document.getElementById('locationList').value;
     var pageTitle = document.getElementById('location-title');
@@ -34,7 +35,6 @@ function ggetMachines() {
         rb.removeChild(rb.children[1]);
     }
 
-
     washerCounter = 0;
     dryerCounter = 0;
     fetch(`/machines?locationList=${location}`).then(response => response.json()).then((messages) => {
@@ -67,6 +67,7 @@ function ggetMachines() {
     gridEl.appendChild(row2);
     gridEl.appendChild(row3);    
     displayNumAvailable();
+    displayTimer();
   });
 }
 
@@ -106,6 +107,7 @@ function createMachineCard(machine) {
       cardTime.className = 'card-time text-empty';
     }
     
+
     if(type == "dryer") //offline, idle, busy, unknown 
     {
         if(status == "offline" || status == "unknown")
@@ -169,6 +171,39 @@ function displayNumAvailable() {
    var dryerAvail = document.getElementById('dryerAvail');
    washerAvail.innerText = "Washers: " + washerCounter + " available";
    dryerAvail.innerText = "Dryers: " + dryerCounter + " available";
+}
+function displayTimer() {
+        
+    var refreshDiv = document.getElementById('refresh-div');
+    var countdown = document.getElementById('countdown');
+
+    if(countdown==null) {
+        countdown = document.createElement('h6');
+        countdown.setAttribute('id', 'countdown');
+        refreshDiv.appendChild(countdown);
+    }
+
+    if(timer != null) {
+        clearInterval(timer);
+        timer = null;
+        countdown.innerText = "";
+    }
+
+    var seconds = 30;
+    timer = setInterval(function() {
+        countdown.innerText = "Refreshing in " +  seconds + " seconds ";
+        seconds--;
+         if (seconds < 0) {
+            seconds = 30;
+            try{
+                ggetMachines();
+            }
+            catch(err) {
+                console.log(err.message);
+                clearInterval(timer);
+            }
+        }
+    }, 1000);
 }
 
 function quickView(){
