@@ -7,17 +7,11 @@ import com.mailjet.client.MailjetRequest;
 import com.mailjet.client.MailjetResponse;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query;
 import com.mailjet.client.ClientOptions;
 import com.mailjet.client.resource.Emailv31;
 import org.json.JSONArray;
@@ -27,11 +21,8 @@ public class EmailServlet extends HttpServlet {
     
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String userEmail = getParameter(request, "emailAddress", "");
-        String machineNum = getParameter(request, "machineNum", "");
-        String machineLoc = getParameter(request, "machineLoc", "");
-        String message = "Machine number " + machineNum + " in " + machineLoc + " is now available!";
-        System.out.println("help");
+        String userEmail = getParameter(request, "email", "");
+        String message = "Your machine is now available! Thank you for using IIT Laundry.";
         try
         {
             sendEmail(message, userEmail);
@@ -40,7 +31,7 @@ public class EmailServlet extends HttpServlet {
         {
             //reponse for error
         }
-        response.sendRedirect("/machines.html");
+        response.sendRedirect("/confirmNotif.html");
     }
 
     public static void sendEmail(String message, String userEmail) throws MailjetException, MailjetSocketTimeoutException {
@@ -58,8 +49,8 @@ public class EmailServlet extends HttpServlet {
     .put(new JSONObject()
     .put("Email", userEmail)
     .put("Name", "Student"))) //get name?
-    .put(Emailv31.Message.SUBJECT, "Greetings from Mailjet.")
-    .put(Emailv31.Message.TEXTPART, "My first Mailjet email")
+    .put(Emailv31.Message.SUBJECT, "Machine now Available")
+    .put(Emailv31.Message.TEXTPART, "")
     .put(Emailv31.Message.HTMLPART, message)
     .put(Emailv31.Message.CUSTOMID, "AppGettingStartedTest")));
     response = client.post(request);

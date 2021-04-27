@@ -94,6 +94,19 @@
         <artifactId>mailjet-client</artifactId>
         <version>4.2.0</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java -->
+    <dependency>
+        <groupId>com.mashape.unirest</groupId>
+        <artifactId>unirest-java</artifactId>
+        <version>1.4.9</version>
+    </dependency>
+
+    <dependency>
+        <groupId>net.sargue</groupId>
+        <artifactId>mailgun</artifactId>
+        <version>1.10.0</version>
+    </dependency>
    
   </dependencies>
     
