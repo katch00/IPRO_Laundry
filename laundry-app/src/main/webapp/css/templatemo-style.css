@@ -134,6 +134,40 @@ video {
 	color: white;
     background-color: #A2D1FF;
 }
+
+.tm-btn-refresh {
+  font-size: 1.5rem;
+  color: #373a3c;
+  background-color: white;
+  padding: 0rem 2.75rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.3rem;
+  border-color: transparent;
+}
+.tm-btn-quick {
+  font-size: 1.3rem;
+  color: #373a3c;
+  background-color: white;
+  padding: 0.4rem 3rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  border: 0.1rem solid #373a3c;
+}
+.tm-btn-refresh:hover,
+.tm-btn-refresh:focus,
+.tm-btn-quick:hover,
+.tm-btn-quick:focus
+ {
+	color: white;
+    background-color: #A2D1FF;
+}
+.tm-section-avail {
+    color: #373a3c;
+    background-color: white;
+    padding: 0.3rem 0.4rem;
+    border-radius: 0.3rem;
+
 /* Reports
 -----------------*/
 .report-bg {
@@ -212,7 +246,7 @@ hr { width: 65%; }
 	width: 33%;
   	height: 33%;
   
-  
+ 
 }
 
 /* 1. Intro
@@ -306,6 +340,7 @@ hr { width: 65%; }
 	line-height: 1.8;
 	margin-bottom: 0;
 }
+
 
 /* 4. icon and text 4 boxes
 ----------------------------*/

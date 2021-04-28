@@ -29,10 +29,30 @@ import java.util.Collections;
 // @WebServlet("/machines")
 public class Machines extends HttpServlet {
    
-       	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
-
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+    private Simulator simulator;
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        if(req.getParameter("quick") != null) {
+            
+            ArrayList<String> locationList = new ArrayList<>();
+            locationList.addAll(simulator.getLocationList());
+            ArrayList<Location> locationObj = new ArrayList<>();
+        
+            for(int i =0; i <locationList.size();i++) {
+                String loc = locationList.get(i);
+                int[] count = simulator.numAvailable(loc);
+                locationObj.add(new Location(loc, count[0], count[1]));
+            }
+            
+            String json = new Gson().toJson(locationObj);
+            resp.setContentType("application/json;");
+            resp.getWriter().println(json);
+
+        }
+        else { 
+
+
         String requestLocation = getParameter(req, "locationList", "MSV");
         FilterPredicate fp = new FilterPredicate("location", FilterOperator.EQUAL, requestLocation);
 
@@ -43,8 +63,7 @@ public class Machines extends HttpServlet {
         PreparedQuery results = datastore.prepare(query);
 	
 	    ArrayList<Machine> machines = new ArrayList<>();
-        for (Entity entity : results.asIterable()) 
-        {
+        for (Entity entity : results.asIterable()) {
             long id = (long) entity.getProperty("id");
             String name = (String) entity.getProperty("name");
 	        String type = (String) entity.getProperty("type");
@@ -61,6 +80,7 @@ public class Machines extends HttpServlet {
 
         resp.setContentType("application/json;");
         resp.getWriter().println(json);
+    }
 
     }
 
@@ -70,14 +90,14 @@ public class Machines extends HttpServlet {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
        	
 	    //clear the datastore, delete all machines
-	    Query query = new Query("machine");
-            PreparedQuery toDelete = datastore.prepare(query);
-            for (Entity entity : toDelete.asIterable()) {
-	        datastore.delete(entity.getKey());
-	    }
+        Query query = new Query("machine");
+        PreparedQuery toDelete = datastore.prepare(query);
+        for (Entity entity : toDelete.asIterable()) {
+            datastore.delete(entity.getKey());
+        }
 	
         //start the simulator
-	    Simulator simulator = new Simulator();
+	    simulator = new Simulator();
 	    simulator.start(); 
 	    ArrayList<Machine> allMachines = new ArrayList<>();
 	    allMachines.addAll(simulator.getMachines());
@@ -104,6 +124,16 @@ public class Machines extends HttpServlet {
             return defaultValue;
         }
         return value;
+    }
+
+   public class Location {
+        private String location;
+        private int washerAvail, dryerAvail;
+        public Location(String loc, int washer, int dryer) {
+            location = loc;
+            washerAvail = washer;
+            dryerAvail = dryer;
+        }
     }
 }
 
