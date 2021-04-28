@@ -87,7 +87,7 @@ public class EmailServlet extends HttpServlet {
         MailjetClient client;
         MailjetRequest request;
         MailjetResponse response;
-        client = new MailjetClient(Key.API_KEY, Key.API_SECRET, new ClientOptions("v3.1"));
+        client = new MailjetClient("6b2fbe12d13fc1c476c2862971b17e9d", "3fefdca13732a0b3e27816ee2c2fb4c6", new ClientOptions("v3.1"));
         request = new MailjetRequest(Emailv31.resource)
         .property(Emailv31.MESSAGES, new JSONArray()
             .put(new JSONObject()
