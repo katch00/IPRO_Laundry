@@ -134,6 +134,86 @@ video {
 	color: white;
     background-color: #A2D1FF;
 }
+/* Reports
+-----------------*/
+.report-bg {
+	background-color: #b9d6f4;
+}
+
+.tm-section-contact {
+	margin: 0 auto;
+	max-width: 1500px;
+}
+
+.form-control {
+	padding: .75rem 1.75rem;
+	font-size: 1.2rem;
+	border-radius: 2.5rem;
+	border-color: #68a8e8;
+}
+
+.form-control:focus { border-color: #1768A9; }
+
+textarea.form-control {
+	padding-top: 1.15rem;
+	padding-bottom: 1.15rem;
+}
+
+.tm-form-group-left { padding-left: 0; }
+
+.tm-form-group-right { padding-right: 0; }
+
+.tm-contact-right { padding-left: 3%; }
+
+.tm-contact-title { font-size: 1.6rem; }
+
+.tm-contact-info {
+	line-height: 1.8;
+	margin-bottom: 5%;
+}
+
+.tm-social-icons-container { margin-top: 20px; }
+
+.tm-social-icon-link {
+	background-color: transparent;
+	color: #81b4eb;
+    padding: 5px;
+    border: 1px solid #68a8e8;
+    border-radius: 50%;
+    margin-right: 2%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+}
+
+.tm-social-icon-link:last-child { margin-right: 0; }
+
+.tm-social-icon-link:hover,
+.tm-social-icon-link:focus {
+	color: white;
+	background-color: #81b4eb;
+}
+
+hr { width: 65%; }
+
+.tm-copyright-text {
+	color: #999999;
+	font-size: 1.3rem;
+	padding-top: 3%;
+	padding-bottom: 3%;
+
+.infographic-img {
+	width: 25%;
+  	height: 25%;
+}
+
+.infographic-img2 {
+	width: 33%;
+  	height: 33%;
+  
+  
+}
 
 /* 1. Intro
 -----------------*/
