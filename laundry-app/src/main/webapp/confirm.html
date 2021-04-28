@@ -5,7 +5,7 @@
         <meta name="google-signin-client_id" content="94081382333-ucmdkutji754lsf520g8cl4eokk1gnot.apps.googleusercontent.com">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-        <title>IIT Laundry App</title>
+        <title>Reports Page</title>
         <!-- NOTE: replaced jquery link -->
         <script src="https://code.jquery.com/jquery-1.11.0.min.js" integrity="sha256-spTpc4lvj4dOkKjrGokIrHkJgNA0xMS98Pw9N7ir9oI=" crossorigin="anonymous"></script>
         <!-- load stylesheets -->
@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
         <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
         <link rel="stylesheet" href="css/templatemo-style.css">                    <!-- Templatemo style -->
-        <link rel="icon" type="image/png" href="img/icon.png"/>
+
     </head>
     <body>
         <div class="navbar">
@@ -25,7 +25,7 @@
             </div>
             <nav class="navbar navbar-expand-sm bg-light">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
                     <li class="nav-item"><a class="nav-link" href="reports.html">Reports</a></li>
                     <li id="sign-in"><div class="g-signin2" id="g-signin-2" data-onsuccess="onSignIn"></div></li>
@@ -45,29 +45,26 @@
                                 console.log('User signed out.');
                             });
                             document.getElementById('sign-in').style.display = "";
-                            document.getElementById('sign-out').style.display = "none";    
+                            document.getElementById('sign-out').style.display = "none";
                         }
                     </script>
                 </ul>
             </nav>
         </div>
+        <div class="report-bg">
         <div class="container-fluid">
             <div class="row">
                 <section class="tm-section-intro">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div class="tm-wrapper-center">
-                            <h1 class="tm-section-intro-title">IIT Laundry App</h1>
-
-                            <p class="tm-section-intro-text"><em>Finally, a solution to your laundry experience!</em><br></p>
-			                      <!--<a href="machines.html" class="tm-btn-white-big">Explore</a> -->
-			                      <form method="POST" action="/machines">
-                                <input type="submit" name="Explore" value="Explore" class="tm-btn-white-big">
-                            </form>
+                            <h1 class="tm-section-intro-title">Thank you for your input!</h1>
+                            <a href="index.html" class="tm-btn-white-big">Return to Home</a>
                         </div>
                     </div>
                 </section>
             </div>
         </div> <!-- container-fluid -->
+        </div>
 
         <!-- load JS files -->
         <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery, https://jquery.com/download/ -->
