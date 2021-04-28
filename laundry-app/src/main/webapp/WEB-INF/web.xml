@@ -14,12 +14,12 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>email</servlet-name>
+        <servlet-name>notifEmail</servlet-name>
         <servlet-class>myapp.EmailNotifServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>email</servlet-name>
-        <url-pattern>/email</url-pattern>
+        <servlet-name>notifEmail</servlet-name>
+        <url-pattern>/notifEmail</url-pattern>
     </servlet-mapping>
     <static-files>
     <!-- prevent unwanted caching when accessing via the web preview server -->
