@@ -5,7 +5,7 @@
         <meta name="google-signin-client_id" content="94081382333-ucmdkutji754lsf520g8cl4eokk1gnot.apps.googleusercontent.com">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-        <title>IIT Laundry App</title>
+        <title>Reports Page</title>
         <!-- NOTE: replaced jquery link -->
         <script src="https://code.jquery.com/jquery-1.11.0.min.js" integrity="sha256-spTpc4lvj4dOkKjrGokIrHkJgNA0xMS98Pw9N7ir9oI=" crossorigin="anonymous"></script>
         <!-- load stylesheets -->
@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
         <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
         <link rel="stylesheet" href="css/templatemo-style.css">                    <!-- Templatemo style -->
-        <link rel="icon" type="image/png" href="img/icon.png"/>
+
     </head>
     <body>
         <div class="navbar">
@@ -25,9 +25,9 @@
             </div>
             <nav class="navbar navbar-expand-sm bg-light">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
-                    <li class="nav-item"><a class="nav-link" href="reports.html">Reports</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="reports.html">Reports</a></li>
                     <li id="sign-in"><div class="g-signin2" id="g-signin-2" data-onsuccess="onSignIn"></div></li>
                     <li id="sign-out" style="display:none;"><a href="#" onClick="onSignOut()">Sign Out</a> </li>
                     <!-- Will not work with these functions anywhere else, must be in the html files-->
@@ -45,29 +45,77 @@
                                 console.log('User signed out.');
                             });
                             document.getElementById('sign-in').style.display = "";
-                            document.getElementById('sign-out').style.display = "none";    
+                            document.getElementById('sign-out').style.display = "none";
                         }
                     </script>
                 </ul>
             </nav>
         </div>
+        <!-- - -->
+        <div class="report-bg">
         <div class="container-fluid">
-            <div class="row">
-                <section class="tm-section-intro">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="tm-wrapper-center">
-                            <h1 class="tm-section-intro-title">IIT Laundry App</h1>
+            <div class="row tm-section">
+                <section class="tm-section-contact">
 
-                            <p class="tm-section-intro-text"><em>Finally, a solution to your laundry experience!</em><br></p>
-			                      <!--<a href="machines.html" class="tm-btn-white-big">Explore</a> -->
-			                      <form method="POST" action="/machines">
-                                <input type="submit" name="Explore" value="Explore" class="tm-btn-white-big">
-                            </form>
-                        </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-xs-center">
+
+                        <h2 class="tm-section-title">Report A Problem / Contact</h2>
+                        <!-- <p class="tm-section-subtitle">Phasellus lacinia feugiat accumsan. Nulla tempor vel est sit amet tincidunt. Nullam eget lectus ut felis aliquam.</p> -->
+
                     </div>
+                    <form action="/email" method="post" class="tm-contact-form">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 tm-contact-right">
+                        <p class="tm-contact-info">Please use this form to report any of your concerns or questions to be relayed either to IIT Maintenance or the developers of this web application. Thank you for sharing your valuable input!
+                        </p>
+
+                        <label for="report-type">Who would you like to contact?:</label>
+                            <select name="report-typen" id="report-typei">
+                                <option value="IIT-Maitenance">IIT Maintenance</option>
+                                <option value="Developers">Developers</option>
+                            </select>
+                    </div>
+
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                        
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm-form-group-left">
+                                <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name"/>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm-form-group-right">
+                                <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="contact_subject" name="contact_subject" class="form-control" placeholder="Subject (Required)"  required/>
+                            </div>
+
+
+                            <div id="ifYes">
+
+                                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm-form-group-left">
+                                    <input type="text" id="contact_location" name="contact_location" class="form-control" placeholder="Location"/>
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm-form-group-right">
+                                    <input type="text" id="contact_machinee" name="contact_machine" class="form-control" placeholder="Machine Number"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <textarea id="contact_message" name="contact_message" class="form-control" rows="6" placeholder="Message (Required)" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn tm-bordered-btn pull-xs-right">Submit</button>
+                    </form>
+                    </div> <!-- col -->
+
+
+
                 </section>
+
             </div>
         </div> <!-- container-fluid -->
+        <!-- -->
+    </div>
 
         <!-- load JS files -->
         <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery, https://jquery.com/download/ -->
@@ -124,6 +172,25 @@
                     $('#result').html("Hello, " + data.name);
                 });
             });
+        </script>
+
+        <!-- show certain form based on dropdown -->
+        <script>
+
+        $("#report-typei").change(function () {
+            var option = $("#report-typei").val();
+            if(option=="Developers") {
+                console.log("picked developers!");
+                document.getElementById('ifYes').style.display = 'none';
+            }
+
+            if(option=="IIT-Maitenance") {
+                console.log("picked IIT Maitenance!");
+                document.getElementById('ifYes').style.display = 'block';
+            }
+
+
+        });
         </script>
     </body>
 </html>
