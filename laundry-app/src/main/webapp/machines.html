@@ -5,6 +5,8 @@
         <meta name="google-signin-client_id" content="94081382333-ucmdkutji754lsf520g8cl4eokk1gnot.apps.googleusercontent.com">
         <title>Machine Page</title>
         <script type="text/javascript" src="script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"><!-- Google web font "Open Sans", https://www.google.com/fonts/specimen/Open+Sans -->
         <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
@@ -15,7 +17,7 @@
     <body>
         <div class="navbar">
             <div class="logo">
-                <a href="index.html"> <!-- this pointed to uploadMachine.html before. assuming it was temporary?-->
+                <a href="index.html">
                     <img src="https://static.thenounproject.com/png/1754024-200.png" alt="Logo" height="115" width="115"/>
                 </a>
             </div>
@@ -32,6 +34,7 @@
                              var profile = googleUser.getBasicProfile();
                              document.getElementById('sign-in').style.display = "none";
                              document.getElementById('sign-out').style.display = "";
+                             document.getElementById('user-email').innerText = profile.getEmail();
                          }
                     </script>
                     <script>
@@ -63,6 +66,36 @@
                 </select><br>
             </form>
         </div>
+        <br><br> 
+        <p hidden id="user-email"></p>/>
+        <div class="container"></div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Get notified when available</h4>
+                    </div>
+                    <form method="POST" action="/notifEmail">
+                        <div class="modal-body">
+                            <p>Enter your address:</p>
+                            <input type="text" id="email" name="email" class="form-control" onclick="autofill()" placeholder="Email address"/>                            
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary" type="submit" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            function autofill() {
+                document.getElementById('email').value = document.getElementById('user-email').innerText;
+            }
+        </script>
         <br>
         <div class="tm-wrapper-center" id="quick-view-div">
             <button class="tm-btn-quick" type="button" id="quick-view-btn" onclick="quickView()">Quick View</button>

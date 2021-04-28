@@ -12,6 +12,15 @@
         <servlet-name>machines</servlet-name>
         <url-pattern>/machines</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>notifEmail</servlet-name>
+        <servlet-class>myapp.EmailNotifServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>notifEmail</servlet-name>
+        <url-pattern>/notifEmail</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>email</servlet-name>
         <servlet-class>myapp.EmailServlet</servlet-class>
@@ -20,7 +29,8 @@
         <servlet-name>email</servlet-name>
         <url-pattern>/email</url-pattern>
     </servlet-mapping>
-     <static-files>
+    <static-files>
+
     <!-- prevent unwanted caching when accessing via the web preview server -->
     <include path="/**" expiration="0s" />
     </static-files>

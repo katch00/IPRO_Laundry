@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="google-signin-client_id" content="94081382333-ucmdkutji754lsf520g8cl4eokk1gnot.apps.googleusercontent.com">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <title>Reports Page</title>
+        <!-- NOTE: replaced jquery link -->
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js" integrity="sha256-spTpc4lvj4dOkKjrGokIrHkJgNA0xMS98Pw9N7ir9oI=" crossorigin="anonymous"></script>
+        <!-- load stylesheets -->
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"><!-- Google web font "Open Sans", https://www.google.com/fonts/specimen/Open+Sans -->
+        <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css"> <!-- Font Awesome, https://fortawesome.github.io/Font-Awesome/ -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">                       <!-- Bootstrap style, http://v4-alpha.getbootstrap.com/ -->
+        <link rel="stylesheet" href="css/templatemo-style.css">                    <!-- Templatemo style -->
+
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://static.thenounproject.com/png/1754024-200.png" alt="Logo" height="115" width="115"/>
+                </a>
+            </div>
+            <nav class="navbar navbar-expand-sm bg-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reports.html">Reports</a></li>
+                    <li id="sign-in"><div class="g-signin2" id="g-signin-2" data-onsuccess="onSignIn"></div></li>
+                    <li id="sign-out" style="display:none;"><a href="#" onClick="onSignOut()">Sign Out</a> </li>
+                    <!-- Will not work with these functions anywhere else, must be in the html files-->
+                    <script>
+                         function onSignIn(googleUser) {
+                             var profile = googleUser.getBasicProfile();
+                             document.getElementById('sign-in').style.display = "none";
+                             document.getElementById('sign-out').style.display = "";
+                         }
+                    </script>
+                    <script>
+                        function onSignOut() {
+                            var auth2 = gapi.auth2.getAuthInstance();
+                            auth2.signOut().then(function () {
+                                console.log('User signed out.');
+                            });
+                            document.getElementById('sign-in').style.display = "";
+                            document.getElementById('sign-out').style.display = "none";
+                        }
+                    </script>
+                </ul>
+            </nav>
+        </div>
+        <div class="report-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <section class="tm-section-intro">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="tm-wrapper-center">
+                            <h1 class="tm-section-intro-title">You will be notified when the machine is available!</h1>
+                            <h3 class="tm-section-intro-title">Please check your spam folder</h3>
+                            <a href="index.html" class="tm-btn-white-big">Return to Home</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> <!-- container-fluid -->
+        </div>
+
+        <!-- load JS files -->
+        <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery, https://jquery.com/download/ -->
+        <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+        <script src="js/bootstrap.min.js"></script>                 <!-- Bootstrap, http://v4-alpha.getbootstrap.com/ -->
+        <script src="js/jquery.touchSwipe.min.js"></script>         <!-- http://labs.rampinteractive.co.uk/touchSwipe/demos/ -->
+
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <script>
+            $(document).ready(function(){
+                /* Smooth Scrolling
+                * https://css-tricks.com/snippets/jquery/smooth-scrolling/
+                --------------------------------------------------------------*/
+                $('a[href*="#"]:not([href="#"])').click(function() {
+                    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+                        && location.hostname == this.hostname) {
+
+                            var target = $(this.hash);
+                            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+
+                            if (target.length) {
+
+                                $('html, body').animate({
+                                    scrollTop: target.offset().top
+                                }, 1000);
+                                return false;
+                            }
+                        }
+                    });
+                    /* Handle window resize */
+                    $(window).resize(function(){
+                        if($(window).width() <= 991) {
+                            $(".carousel-inner").swipe( {
+                                //Generic swipe handler for all directions
+                                swipeLeft:function(event, direction, distance, duration, fingerCount) {
+                                    $(this).parent().carousel('next');
+                                },
+                                swipeRight: function() {
+                                    $(this).parent().carousel('prev');
+                                },
+                                //Default is 75px, set to 0 for demo so any distance triggers swipe
+                                threshold:0
+                            });
+                        }
+                    });
+
+                });
+
+        </script>
+        <script>
+            $(document).ready(function() {
+                $.getJSON('/demo', function(data) {
+                    $('#result').html("Hello, " + data.name);
+                });
+            });
+        </script>
+    </body>
+</html>

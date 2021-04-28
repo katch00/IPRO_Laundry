@@ -146,6 +146,7 @@ function createMachineCard(machine) {
         {
             cardImg.src = 'img/redWasher.png';
             cardSubTitle.className = 'card-subtitle text-danger';
+            
         }
     }
   
@@ -162,6 +163,22 @@ function createMachineCard(machine) {
     machineCard.appendChild(cardTitle);
     machineCard.appendChild(cardSubTitle);
     machineCard.appendChild(cardTime);
+    if(status == "busy")
+    {
+        const notifyMe = document.createElement('button');
+        notifyMe.type = 'button';
+        notifyMe.className = 'btn btn-info btn-sm';
+        notifyMe.setAttribute('data-toggle', 'modal');
+        notifyMe.setAttribute('data-target', '#myModal');
+        notifyMe.innerText = 'Notify me!';
+        machineCard.appendChild(notifyMe);
+    }
+    else
+    {
+        const formatButton = document.createElement('button');
+        formatButton.className = 'btn btn-sm invisible';
+        machineCard.appendChild(formatButton);
+    }
     
     return machineCard;
 }
