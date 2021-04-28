@@ -26,7 +26,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
-//@WebServlet("/machines")
+// @WebServlet("/machines")
 public class Machines extends HttpServlet {
    
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
