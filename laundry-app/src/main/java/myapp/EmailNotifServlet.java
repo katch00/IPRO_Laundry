@@ -17,7 +17,7 @@ import com.mailjet.client.resource.Emailv31;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class EmailServlet extends HttpServlet {
+public class EmailNotifServlet extends HttpServlet {
 
 
     @Override
