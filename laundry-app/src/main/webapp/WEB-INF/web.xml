@@ -15,7 +15,7 @@
     
     <servlet>
         <servlet-name>email</servlet-name>
-        <servlet-class>myapp.EmailServlet</servlet-class>
+        <servlet-class>myapp.EmailNotifServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>email</servlet-name>
